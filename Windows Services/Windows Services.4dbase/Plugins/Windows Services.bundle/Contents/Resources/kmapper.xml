@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://www.4d.com/namespace/reserved/FP/Constants">
+   <appid>&quot;0&quot;</appid>
+   <fourdversmin>&quot;9.0.0&quot;</fourdversmin>
+   <fourdversmax>&quot;9.0.0&quot;</fourdversmax>
+   <command name="SERVICE Create" str="20000" topic="4">
+      <param position="6" k="20002"/>
+      <param position="7" k="20000"/>
+   </command>
+   <command name="SERVICE Get state" str="20000" topic="6">
+      <param position="2" k="20001"/>
+   </command>
+   <command name="SERVICE Set start type" str="20000" topic="9">
+      <param position="2" k="20002"/>
+   </command>
+   <command name="SERVICE Get start type" str="20000" topic="10">
+      <param position="2" k="20002"/>
+   </command>
+   <command name="SERVICE Set type" str="20000" topic="11">
+      <param position="2" k="20000"/>
+   </command>
+   <command name="SERVICE Get type" str="20000" topic="12">
+      <param position="2" k="20000"/>
+   </command>
+   <command name="SERVICE GET LIST" str="20000" topic="17">
+      <param position="4" k="20001"/>
+      <param position="5" k="20000"/>
+   </command>
+</application>

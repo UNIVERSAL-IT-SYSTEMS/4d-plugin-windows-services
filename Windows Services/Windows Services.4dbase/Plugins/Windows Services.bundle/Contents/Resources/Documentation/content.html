@@ -1,0 +1,687 @@
+<html xmlns:date="http://exslt.org/dates-and-times">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="./CSS/default.css">
+<title>Windows Services</title>
+</head>
+<body>
+<h1>Windows Services</h1>
+<p>
+<span class="title">Plugin Identifier: </span>20000</p>
+<p>
+<span class="title">Summary</span>
+</p>
+<ex4D:plugin-description xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for Windows Services here -->
+</ex4D:plugin-description>
+<a name="command:1"></a>
+<h2>Service Management</h2>
+<a name="command:1,3"></a>
+<h3>SERVICE Change account</h3>
+<p>
+<code>error:=SERVICE Change account (serviceName; accountName; accountPassword)</code>
+</p>
+<p>
+<code>serviceName (TEXT)</code>
+</p>
+<ex4D:argument argument-id="1" label="serviceName" type="T" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $1 (TEXT) here-->
+</ex4D:argument>
+<p>
+<code>accountName (TEXT)</code>
+</p>
+<ex4D:argument argument-id="2" label="accountName" type="T" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $2 (TEXT) here-->
+<p>
+			The name of the account under which the service should run. If the service type is SERVICE_WIN32_OWN_PROCESS, use an account name in the form DomainName\UserName. The service process will be logged on as this user. If the account belongs to the built-in domain, you can specify .\UserName.
+If this parameter is NULL, CreateService uses the LocalSystem account. If the service type specifies SERVICE_INTERACTIVE_PROCESS, the service must run in the LocalSystem account.
+			</p>
+</ex4D:argument>
+<p>
+<code>accountPassword (TEXT)</code>
+</p>
+<ex4D:argument argument-id="3" label="accountPassword" type="T" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $3 (TEXT) here-->
+<p>
+			The password to the account name specified by the lpServiceStartName parameter. Specify an empty string if the account has no password or if the service runs in the LocalService, NetworkService, or LocalSystem account. 
+			</p>
+</ex4D:argument>
+<p>
+<code>error</code> (LONGINT)<br>
+<ex4D:return-value label="error" type="L" xmlns:ex4D="http://www.4d.com/plugin">
+<p>Windows <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms681381(v=vs.85).aspx">System Error Code</a>.</p>
+</ex4D:return-value>
+</p>
+<p>
+<span class="title">Discussion</span>
+</p>
+<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE Change account here -->
+</ex4D:command-description>
+<a name="command:1,4"></a>
+<h3>SERVICE Create</h3>
+<p>
+<code>error:=SERVICE Create (pathName; serviceName; displayName; accountName; accountPassword; serviceStartType; serviceType)</code>
+</p>
+<p>
+<code>pathName (TEXT)</code>
+</p>
+<ex4D:argument argument-id="1" label="pathName" type="T" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $1 (TEXT) here-->
+<p>
+			The fully qualified path to the service binary file. If the path contains a space, it must be quoted so that it is correctly interpreted. For example, "d:\\my share\\myservice.exe" should be specified as "\"d:\\my share\\myservice.exe\"".
+The path can also include arguments for an auto-start service. For example, "d:\\myshare\\myservice.exe arg1 arg2". These arguments are passed to the service entry point (typically the main function).
+If you specify a path on another computer, the share must be accessible by the computer account of the local computer because this is the security context used in the remote call. However, this requirement allows any potential vulnerabilities in the remote computer to affect the local computer. Therefore, it is best to use a local file.
+			</p>
+</ex4D:argument>
+<p>
+<code>serviceName (TEXT)</code>
+</p>
+<ex4D:argument argument-id="2" label="serviceName" type="T" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $2 (TEXT) here-->
+<p>
+			The name of the service to install. The maximum string length is 256 characters. The service control manager database preserves the case of the characters, but service name comparisons are always case insensitive. Forward-slash (/) and backslash (\) are not valid service name characters.
+			</p>
+</ex4D:argument>
+<p>
+<code>displayName (TEXT)</code>
+</p>
+<ex4D:argument argument-id="3" label="displayName" type="T" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $3 (TEXT) here-->
+<p>
+			The display name to be used by user interface programs to identify the service. This string has a maximum length of 256 characters. The name is case-preserved in the service control manager. Display name comparisons are always case-insensitive.
+			</p>
+</ex4D:argument>
+<p>
+<code>accountName (TEXT)</code>
+</p>
+<ex4D:argument argument-id="4" label="accountName" type="T" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $4 (TEXT) here-->
+<p>
+			The name of the account under which the service should run. If the service type is SERVICE_WIN32_OWN_PROCESS, use an account name in the form DomainName\UserName. The service process will be logged on as this user. If the account belongs to the built-in domain, you can specify .\UserName.
+If this parameter is NULL, CreateService uses the LocalSystem account. If the service type specifies SERVICE_INTERACTIVE_PROCESS, the service must run in the LocalSystem account.
+			</p>
+</ex4D:argument>
+<p>
+<code>accountPassword (TEXT)</code>
+</p>
+<ex4D:argument argument-id="5" label="accountPassword" type="T" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $5 (TEXT) here-->
+<p>
+			The password to the account name specified by the lpServiceStartName parameter. Specify an empty string if the account has no password or if the service runs in the LocalService, NetworkService, or LocalSystem account. 
+			</p>
+</ex4D:argument>
+<p>
+<code>serviceStartType (LONGINT)</code>
+</p>
+<ex4D:argument argument-id="6" label="serviceStartType" type="L" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $6 (LONGINT) here-->
+</ex4D:argument>
+<p>You can use a <a href="#constant:3">Service Start Type</a> constant for <code>serviceStartType</code>.</p>
+<p>
+<code>serviceType (LONGINT)</code>
+</p>
+<ex4D:argument argument-id="7" label="serviceType" type="L" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $7 (LONGINT) here-->
+</ex4D:argument>
+<p>You can use a <a href="#constant:1">Service Type</a> constant for <code>serviceType</code>.</p>
+<p>
+<code>error</code> (LONGINT)<br>
+<ex4D:return-value label="error" type="L" xmlns:ex4D="http://www.4d.com/plugin">
+<p>Windows <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms681381(v=vs.85).aspx">System Error Code</a>.</p>
+</ex4D:return-value>
+</p>
+<p>
+<span class="title">Discussion</span>
+</p>
+<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE Create here -->
+</ex4D:command-description>
+<a name="command:1,5"></a>
+<h3>SERVICE Delete</h3>
+<p>
+<code>error:=SERVICE Delete (serviceName)</code>
+</p>
+<p>
+<code>serviceName (TEXT)</code>
+</p>
+<ex4D:argument argument-id="1" label="serviceName" type="T" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $1 (TEXT) here-->
+</ex4D:argument>
+<p>
+<code>error</code> (LONGINT)<br>
+<ex4D:return-value label="error" type="L" xmlns:ex4D="http://www.4d.com/plugin">
+<p>Windows <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms681381(v=vs.85).aspx">System Error Code</a>.</p>
+</ex4D:return-value>
+</p>
+<p>
+<span class="title">Discussion</span>
+</p>
+<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE Delete here -->
+</ex4D:command-description>
+<a name="command:1,2"></a>
+<h3>SERVICE Get display name</h3>
+<p>
+<code>error:=SERVICE Get display name (serviceName; displayName)</code>
+</p>
+<p>
+<code>serviceName (TEXT)</code>
+</p>
+<ex4D:argument argument-id="1" label="serviceName" type="T" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $1 (TEXT) here-->
+</ex4D:argument>
+<p>
+<code>displayName (TEXT)</code>
+</p>
+<ex4D:argument argument-id="2" label="displayName" type="T" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $2 (TEXT) here-->
+</ex4D:argument>
+<p>
+<code>error</code> (LONGINT)<br>
+<ex4D:return-value label="error" type="L" xmlns:ex4D="http://www.4d.com/plugin">
+<p>Windows <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms681381(v=vs.85).aspx">System Error Code</a>.</p>
+</ex4D:return-value>
+</p>
+<p>
+<span class="title">Discussion</span>
+</p>
+<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE Get display name here -->
+</ex4D:command-description>
+<a name="command:1,8"></a>
+<h3>SERVICE Get path</h3>
+<p>
+<code>error:=SERVICE Get path (serviceName; pathName)</code>
+</p>
+<p>
+<code>serviceName (TEXT)</code>
+</p>
+<ex4D:argument argument-id="1" label="serviceName" type="T" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $1 (TEXT) here-->
+</ex4D:argument>
+<p>
+<code>pathName (TEXT)</code>
+</p>
+<ex4D:argument argument-id="2" label="pathName" type="T" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $2 (TEXT) here-->
+</ex4D:argument>
+<p>
+<code>error</code> (LONGINT)<br>
+<ex4D:return-value label="error" type="L" xmlns:ex4D="http://www.4d.com/plugin">
+<p>Windows <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms681381(v=vs.85).aspx">System Error Code</a>.</p>
+</ex4D:return-value>
+</p>
+<p>
+<span class="title">Discussion</span>
+</p>
+<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE Get path here -->
+</ex4D:command-description>
+<a name="command:1,10"></a>
+<h3>SERVICE Get start type</h3>
+<p>
+<code>error:=SERVICE Get start type (serviceName; serviceStartType)</code>
+</p>
+<p>
+<code>serviceName (TEXT)</code>
+</p>
+<ex4D:argument argument-id="1" label="serviceName" type="T" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $1 (TEXT) here-->
+</ex4D:argument>
+<p>
+<code>serviceStartType (LONGINT)</code>
+</p>
+<ex4D:argument argument-id="2" label="serviceStartType" type="L" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $2 (LONGINT) here-->
+</ex4D:argument>
+<p>You can use a <a href="#constant:3">Service Start Type</a> constant for <code>serviceStartType</code>.</p>
+<p>
+<code>error</code> (LONGINT)<br>
+<ex4D:return-value label="error" type="L" xmlns:ex4D="http://www.4d.com/plugin">
+<p>Windows <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms681381(v=vs.85).aspx">System Error Code</a>.</p>
+</ex4D:return-value>
+</p>
+<p>
+<span class="title">Discussion</span>
+</p>
+<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE Get start type here -->
+</ex4D:command-description>
+<a name="command:1,6"></a>
+<h3>SERVICE Get state</h3>
+<p>
+<code>error:=SERVICE Get state (serviceName; state; waitHint)</code>
+</p>
+<p>
+<code>serviceName (TEXT)</code>
+</p>
+<ex4D:argument argument-id="1" label="serviceName" type="T" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $1 (TEXT) here-->
+</ex4D:argument>
+<p>
+<code>state (LONGINT)</code>
+</p>
+<ex4D:argument argument-id="2" label="state" type="L" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $2 (LONGINT) here-->
+</ex4D:argument>
+<p>You can use a <a href="#constant:2">Service State</a> constant for <code>state</code>.</p>
+<p>
+<code>waitHint (LONGINT)</code>
+</p>
+<ex4D:argument argument-id="3" label="waitHint" type="L" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $3 (LONGINT) here-->
+</ex4D:argument>
+<p>
+<code>error</code> (LONGINT)<br>
+<ex4D:return-value label="error" type="L" xmlns:ex4D="http://www.4d.com/plugin">
+<p>Windows <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms681381(v=vs.85).aspx">System Error Code</a>.</p>
+</ex4D:return-value>
+</p>
+<p>
+<span class="title">Discussion</span>
+</p>
+<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE Get state here -->
+</ex4D:command-description>
+<a name="command:1,12"></a>
+<h3>SERVICE Get type</h3>
+<p>
+<code>error:=SERVICE Get type (serviceName; serviceType)</code>
+</p>
+<p>
+<code>serviceName (TEXT)</code>
+</p>
+<ex4D:argument argument-id="1" label="serviceName" type="T" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $1 (TEXT) here-->
+</ex4D:argument>
+<p>
+<code>serviceType (LONGINT)</code>
+</p>
+<ex4D:argument argument-id="2" label="serviceType" type="L" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $2 (LONGINT) here-->
+</ex4D:argument>
+<p>You can use a <a href="#constant:1">Service Type</a> constant for <code>serviceType</code>.</p>
+<p>
+<code>error</code> (LONGINT)<br>
+<ex4D:return-value label="error" type="L" xmlns:ex4D="http://www.4d.com/plugin">
+<p>Windows <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms681381(v=vs.85).aspx">System Error Code</a>.</p>
+</ex4D:return-value>
+</p>
+<p>
+<span class="title">Discussion</span>
+</p>
+<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE Get type here -->
+</ex4D:command-description>
+<a name="command:1,1"></a>
+<h3>SERVICE Set display name</h3>
+<p>
+<code>error:=SERVICE Set display name (serviceName; displayName)</code>
+</p>
+<p>
+<code>serviceName (TEXT)</code>
+</p>
+<ex4D:argument argument-id="1" label="serviceName" type="T" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $1 (TEXT) here-->
+</ex4D:argument>
+<p>
+<code>displayName (TEXT)</code>
+</p>
+<ex4D:argument argument-id="2" label="displayName" type="T" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $2 (TEXT) here-->
+<p>
+			The display name to be used by user interface programs to identify the service. This string has a maximum length of 256 characters. The name is case-preserved in the service control manager. Display name comparisons are always case-insensitive.
+			</p>
+</ex4D:argument>
+<p>
+<code>error</code> (LONGINT)<br>
+<ex4D:return-value label="error" type="L" xmlns:ex4D="http://www.4d.com/plugin">
+<p>Windows <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms681381(v=vs.85).aspx">System Error Code</a>.</p>
+</ex4D:return-value>
+</p>
+<p>
+<span class="title">Discussion</span>
+</p>
+<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE Set display name here -->
+</ex4D:command-description>
+<a name="command:1,7"></a>
+<h3>SERVICE Set path</h3>
+<p>
+<code>error:=SERVICE Set path (serviceName; pathName)</code>
+</p>
+<p>
+<code>serviceName (TEXT)</code>
+</p>
+<ex4D:argument argument-id="1" label="serviceName" type="T" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $1 (TEXT) here-->
+</ex4D:argument>
+<p>
+<code>pathName (TEXT)</code>
+</p>
+<ex4D:argument argument-id="2" label="pathName" type="T" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $2 (TEXT) here-->
+<p>
+			The fully qualified path to the service binary file. If the path contains a space, it must be quoted so that it is correctly interpreted. For example, "d:\\my share\\myservice.exe" should be specified as "\"d:\\my share\\myservice.exe\"".
+The path can also include arguments for an auto-start service. For example, "d:\\myshare\\myservice.exe arg1 arg2". These arguments are passed to the service entry point (typically the main function).
+If you specify a path on another computer, the share must be accessible by the computer account of the local computer because this is the security context used in the remote call. However, this requirement allows any potential vulnerabilities in the remote computer to affect the local computer. Therefore, it is best to use a local file.
+			</p>
+</ex4D:argument>
+<p>
+<code>error</code> (LONGINT)<br>
+<ex4D:return-value label="error" type="L" xmlns:ex4D="http://www.4d.com/plugin">
+<p>Windows <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms681381(v=vs.85).aspx">System Error Code</a>.</p>
+</ex4D:return-value>
+</p>
+<p>
+<span class="title">Discussion</span>
+</p>
+<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE Set path here -->
+</ex4D:command-description>
+<a name="command:1,9"></a>
+<h3>SERVICE Set start type</h3>
+<p>
+<code>error:=SERVICE Set start type (serviceName; serviceStartType)</code>
+</p>
+<p>
+<code>serviceName (TEXT)</code>
+</p>
+<ex4D:argument argument-id="1" label="serviceName" type="T" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $1 (TEXT) here-->
+</ex4D:argument>
+<p>
+<code>serviceStartType (LONGINT)</code>
+</p>
+<ex4D:argument argument-id="2" label="serviceStartType" type="L" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $2 (LONGINT) here-->
+</ex4D:argument>
+<p>You can use a <a href="#constant:3">Service Start Type</a> constant for <code>serviceStartType</code>.</p>
+<p>
+<code>error</code> (LONGINT)<br>
+<ex4D:return-value label="error" type="L" xmlns:ex4D="http://www.4d.com/plugin">
+<p>Windows <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms681381(v=vs.85).aspx">System Error Code</a>.</p>
+</ex4D:return-value>
+</p>
+<p>
+<span class="title">Discussion</span>
+</p>
+<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE Set start type here -->
+</ex4D:command-description>
+<a name="command:1,11"></a>
+<h3>SERVICE Set type</h3>
+<p>
+<code>error:=SERVICE Set type (serviceName; serviceType)</code>
+</p>
+<p>
+<code>serviceName (TEXT)</code>
+</p>
+<ex4D:argument argument-id="1" label="serviceName" type="T" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $1 (TEXT) here-->
+</ex4D:argument>
+<p>
+<code>serviceType (LONGINT)</code>
+</p>
+<ex4D:argument argument-id="2" label="serviceType" type="L" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $2 (LONGINT) here-->
+</ex4D:argument>
+<p>You can use a <a href="#constant:1">Service Type</a> constant for <code>serviceType</code>.</p>
+<p>
+<code>error</code> (LONGINT)<br>
+<ex4D:return-value label="error" type="L" xmlns:ex4D="http://www.4d.com/plugin">
+<p>Windows <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms681381(v=vs.85).aspx">System Error Code</a>.</p>
+</ex4D:return-value>
+</p>
+<p>
+<span class="title">Discussion</span>
+</p>
+<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE Set type here -->
+</ex4D:command-description>
+<a name="command:2"></a>
+<h2>Service Control</h2>
+<a name="command:2,14"></a>
+<h3>SERVICE Pause</h3>
+<p>
+<code>error:=SERVICE Pause (serviceName)</code>
+</p>
+<p>
+<code>serviceName (TEXT)</code>
+</p>
+<ex4D:argument argument-id="1" label="serviceName" type="T" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $1 (TEXT) here-->
+</ex4D:argument>
+<p>
+<code>error</code> (LONGINT)<br>
+<ex4D:return-value label="error" type="L" xmlns:ex4D="http://www.4d.com/plugin">
+<p>Windows <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms681381(v=vs.85).aspx">System Error Code</a>.</p>
+</ex4D:return-value>
+</p>
+<p>
+<span class="title">Discussion</span>
+</p>
+<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE Pause here -->
+</ex4D:command-description>
+<a name="command:2,13"></a>
+<h3>SERVICE Resume</h3>
+<p>
+<code>error:=SERVICE Resume (serviceName)</code>
+</p>
+<p>
+<code>serviceName (TEXT)</code>
+</p>
+<ex4D:argument argument-id="1" label="serviceName" type="T" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $1 (TEXT) here-->
+</ex4D:argument>
+<p>
+<code>error</code> (LONGINT)<br>
+<ex4D:return-value label="error" type="L" xmlns:ex4D="http://www.4d.com/plugin">
+<p>Windows <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms681381(v=vs.85).aspx">System Error Code</a>.</p>
+</ex4D:return-value>
+</p>
+<p>
+<span class="title">Discussion</span>
+</p>
+<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE Resume here -->
+</ex4D:command-description>
+<a name="command:2,16"></a>
+<h3>SERVICE Start</h3>
+<p>
+<code>error:=SERVICE Start (serviceName)</code>
+</p>
+<p>
+<code>serviceName (TEXT)</code>
+</p>
+<ex4D:argument argument-id="1" label="serviceName" type="T" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $1 (TEXT) here-->
+</ex4D:argument>
+<p>
+<code>error</code> (LONGINT)<br>
+<ex4D:return-value label="error" type="L" xmlns:ex4D="http://www.4d.com/plugin">
+<p>Windows <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms681381(v=vs.85).aspx">System Error Code</a>.</p>
+</ex4D:return-value>
+</p>
+<p>
+<span class="title">Discussion</span>
+</p>
+<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE Start here -->
+</ex4D:command-description>
+<a name="command:2,15"></a>
+<h3>SERVICE Stop</h3>
+<p>
+<code>error:=SERVICE Stop (serviceName)</code>
+</p>
+<p>
+<code>serviceName (TEXT)</code>
+</p>
+<ex4D:argument argument-id="1" label="serviceName" type="T" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $1 (TEXT) here-->
+</ex4D:argument>
+<p>
+<code>error</code> (LONGINT)<br>
+<ex4D:return-value label="error" type="L" xmlns:ex4D="http://www.4d.com/plugin">
+<p>Windows <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms681381(v=vs.85).aspx">System Error Code</a>.</p>
+</ex4D:return-value>
+</p>
+<p>
+<span class="title">Discussion</span>
+</p>
+<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE Stop here -->
+</ex4D:command-description>
+<a name="command:3"></a>
+<h2>Service Database</h2>
+<a name="command:3,17"></a>
+<h3>SERVICE GET LIST</h3>
+<p>
+<code>SERVICE GET LIST (serviceNames; serviceDisplayNames; accountNames; states; startTypes)</code>
+</p>
+<p>
+<code>serviceNames (ARRAY)</code>
+</p>
+<ex4D:argument argument-id="1" label="serviceNames" type="Y" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $1 (ARRAY) here-->
+</ex4D:argument>
+<p>
+<code>serviceDisplayNames (ARRAY)</code>
+</p>
+<ex4D:argument argument-id="2" label="serviceDisplayNames" type="Y" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $2 (ARRAY) here-->
+</ex4D:argument>
+<p>
+<code>accountNames (ARRAY)</code>
+</p>
+<ex4D:argument argument-id="3" label="accountNames" type="Y" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $3 (ARRAY) here-->
+</ex4D:argument>
+<p>
+<code>states (ARRAY)</code>
+</p>
+<ex4D:argument argument-id="4" label="states" type="Y" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $4 (ARRAY) here-->
+</ex4D:argument>
+<p>You can use a <a href="#constant:2">Service State</a> constant for <code>states</code>.</p>
+<p>
+<code>startTypes (ARRAY)</code>
+</p>
+<ex4D:argument argument-id="5" label="startTypes" type="Y" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for $5 (ARRAY) here-->
+</ex4D:argument>
+<p>You can use a <a href="#constant:1">Service Type</a> constant for <code>startTypes</code>.</p>
+<p>
+<span class="title">Discussion</span>
+</p>
+<ex4D:command-description xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE GET LIST here -->
+</ex4D:command-description>
+<a name="constant:1"></a>
+<h2>Service Type</h2>
+<p>
+<code><a name="constant:1,2"></a>SERVICE_KERNEL_DRIVER (1)</code>
+</p>
+<ex4D:constant constant-id="2" name="SERVICE_KERNEL_DRIVER" type="L" value="1" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE_KERNEL_DRIVER (1) here-->
+</ex4D:constant>
+<p>
+<code><a name="constant:1,3"></a>SERVICE_WIN32_OWN_PROCESS (16)</code>
+</p>
+<ex4D:constant constant-id="3" name="SERVICE_WIN32_OWN_PROCESS" type="L" value="16" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE_WIN32_OWN_PROCESS (16) here-->
+</ex4D:constant>
+<p>
+<code><a name="constant:1,1"></a>SERVICE_FILE_SYSTEM_DRIVER (2)</code>
+</p>
+<ex4D:constant constant-id="1" name="SERVICE_FILE_SYSTEM_DRIVER" type="L" value="2" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE_FILE_SYSTEM_DRIVER (2) here-->
+</ex4D:constant>
+<p>
+<code><a name="constant:1,5"></a>SERVICE_INTERACTIVE_PROCESS (256)</code>
+</p>
+<ex4D:constant constant-id="5" name="SERVICE_INTERACTIVE_PROCESS" type="L" value="256" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE_INTERACTIVE_PROCESS (256) here-->
+</ex4D:constant>
+<p>
+<code><a name="constant:1,4"></a>SERVICE_WIN32_SHARE_PROCESS (32)</code>
+</p>
+<ex4D:constant constant-id="4" name="SERVICE_WIN32_SHARE_PROCESS" type="L" value="32" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE_WIN32_SHARE_PROCESS (32) here-->
+</ex4D:constant>
+<a name="constant:2"></a>
+<h2>Service State</h2>
+<p>
+<code><a name="constant:2,7"></a>SERVICE_STOPPED (1)</code>
+</p>
+<ex4D:constant constant-id="7" name="SERVICE_STOPPED" type="L" value="1" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE_STOPPED (1) here-->
+</ex4D:constant>
+<p>
+<code><a name="constant:2,5"></a>SERVICE_START_PENDING (2)</code>
+</p>
+<ex4D:constant constant-id="5" name="SERVICE_START_PENDING" type="L" value="2" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE_START_PENDING (2) here-->
+</ex4D:constant>
+<p>
+<code><a name="constant:2,6"></a>SERVICE_STOP_PENDING (3)</code>
+</p>
+<ex4D:constant constant-id="6" name="SERVICE_STOP_PENDING" type="L" value="3" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE_STOP_PENDING (3) here-->
+</ex4D:constant>
+<p>
+<code><a name="constant:2,4"></a>SERVICE_RUNNING (4)</code>
+</p>
+<ex4D:constant constant-id="4" name="SERVICE_RUNNING" type="L" value="4" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE_RUNNING (4) here-->
+</ex4D:constant>
+<p>
+<code><a name="constant:2,1"></a>SERVICE_CONTINUE_PENDING (5)</code>
+</p>
+<ex4D:constant constant-id="1" name="SERVICE_CONTINUE_PENDING" type="L" value="5" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE_CONTINUE_PENDING (5) here-->
+</ex4D:constant>
+<p>
+<code><a name="constant:2,2"></a>SERVICE_PAUSE_PENDING (6)</code>
+</p>
+<ex4D:constant constant-id="2" name="SERVICE_PAUSE_PENDING" type="L" value="6" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE_PAUSE_PENDING (6) here-->
+</ex4D:constant>
+<p>
+<code><a name="constant:2,3"></a>SERVICE_PAUSED (7)</code>
+</p>
+<ex4D:constant constant-id="3" name="SERVICE_PAUSED" type="L" value="7" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE_PAUSED (7) here-->
+</ex4D:constant>
+<a name="constant:3"></a>
+<h2>Service Start Type</h2>
+<p>
+<code><a name="constant:3,4"></a>SERVICE_SYSTEM_START (1)</code>
+</p>
+<ex4D:constant constant-id="4" name="SERVICE_SYSTEM_START" type="L" value="1" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE_SYSTEM_START (1) here-->
+</ex4D:constant>
+<p>
+<code><a name="constant:3,1"></a>SERVICE_AUTO_START (2)</code>
+</p>
+<ex4D:constant constant-id="1" name="SERVICE_AUTO_START" type="L" value="2" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE_AUTO_START (2) here-->
+</ex4D:constant>
+<p>
+<code><a name="constant:3,2"></a>SERVICE_DEMAND_START (3)</code>
+</p>
+<ex4D:constant constant-id="2" name="SERVICE_DEMAND_START" type="L" value="3" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE_DEMAND_START (3) here-->
+</ex4D:constant>
+<p>
+<code><a name="constant:3,3"></a>SERVICE_DISABLED (4)</code>
+</p>
+<ex4D:constant constant-id="3" name="SERVICE_DISABLED" type="L" value="4" xmlns:ex4D="http://www.4d.com/plugin">
+<!-- write documentation for SERVICE_DISABLED (4) here-->
+</ex4D:constant>
+<p class="footer">
+<span class="title">Documentation Update: </span>2012-08-18T08:36:5609:00</p>
+</body>
+</html>
