@@ -34,6 +34,7 @@ void CommandDispatcher (int32_t pProcNum, sLONG_PTR *pResult, PackagePtr pParams
 {
 	switch(pProcNum)
 	{
+#if VERSIONWIN			
 			// --- Service Management
 			
 		case 1 :
@@ -107,6 +108,6 @@ void CommandDispatcher (int32_t pProcNum, sLONG_PTR *pResult, PackagePtr pParams
 		case 17 :
 			SERVICE_GET_LIST(pResult, pParams);
 			break;
-			
+#endif			
 	}
 }
